@@ -26,17 +26,7 @@
 				<md-subheader class="md-no-sticky">					
 					<span flex="40">Contracts</span>
 					<md-card-content layout layout-align="begin center">
-						<div class="chart-unassigned" style="width:10px;margin-right:10px;"></div><span class="md-caption">Unassigned ({{data.unassigned}})</span>
-						<div class="chart-assigned" style="width:10px;margin-right:10px;margin-left:20px;"></div><span class="md-caption">Assigned ({{data.assigned}})</span>
-						<div class="chart-inprogress" style="width:10px;margin-right:10px;margin-left:20px;"></div><span class="md-caption">In progress ({{data.inprogress}})</span>
-						<div class="chart-completed" style="width:10px;margin-right:10px;margin-left:20px;"></div><span class="md-caption">Completed ({{data.completed}})</span>
-						<img src="/res/images/question.svg" height="10" style="margin-left:20px;margin-right:10px;"> <span class="md-caption">Contract with query</span>
-					</md-card-content>
-					<md-card-content layout>
-						<div flex="{{chart.data[0]}}" class="chart-unassigned"></div>
-						<div flex="{{chart.data[1]}}" class="chart-assigned"></div>
-						<div flex="{{chart.data[2]}}" class="chart-inprogress"></div>
-						<div flex="{{chart.data[3]}}" class="chart-completed"></div>
+						<canvas height="100" class="chart chart-bar" chart-data="chart.data" chart-labels="chart.labels" chart-options="options" ></canvas>
 					</md-card-content>
 				</md-subheader>
 				<md-list flex ng-if="customer.contracts.length > 0">

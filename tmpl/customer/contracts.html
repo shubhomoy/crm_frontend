@@ -14,17 +14,8 @@
 				<span class="md-subhead">View your contract</span>
 			</md-card-header-text>
 		</md-card-header>
-		<md-card-content layout layout-align="begin center">
-			<div class="chart-unassigned" style="width:10px;margin-right:10px;"></div><span class="md-caption">Unassigned ({{data.unassigned}})</span>
-			<div class="chart-assigned" style="width:10px;margin-right:10px;margin-left:20px;"></div><span class="md-caption">Assigned ({{data.assigned}})</span>
-			<div class="chart-inprogress" style="width:10px;margin-right:10px;margin-left:20px;"></div><span class="md-caption">In progress ({{data.inprogress}})</span>
-			<div class="chart-completed" style="width:10px;margin-right:10px;margin-left:20px;"></div><span class="md-caption">Completed ({{data.completed}})</span>
-		</md-card-content>
 		<md-card-content layout>
-			<div flex="{{chart.data[0]}}" class="chart-unassigned"></div>
-			<div flex="{{chart.data[1]}}" class="chart-assigned"></div>
-			<div flex="{{chart.data[2]}}" class="chart-inprogress"></div>
-			<div flex="{{chart.data[3]}}" class="chart-completed"></div>
+			<canvas height="100" class="chart chart-bar" chart-data="chart.data" chart-labels="chart.labels" chart-options="options" ></canvas>
 		</md-card-content>
 		<md-divider></md-divider>
 		<md-card-title>
