@@ -1,4 +1,4 @@
 (function(window) {
 	window.__env = window.__env || {};
-	window.__env.apiUrl = 'http://api.crm.dev:3000';
+	window.__env.apiUrl = 'http://crmbackend.herokuapp.com';
 }(this))
