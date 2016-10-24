@@ -71,6 +71,7 @@ app.controller('loginController', function($scope, $rootScope, $http, crmService
 			$mdToast.show($mdToast.simple().textContent('Invalid login credentials').position('bottom right'));
 			return;
 		}
+		$('#loginBtn').attr({'disabled': 'disabled'});
 		if($scope.loginCreds.as === 'a') {
 			$http.post(crmService.apiUrl + '/auth/admin/signin', $scope.loginCreds)
 			.success(function(response) {
@@ -81,6 +82,7 @@ app.controller('loginController', function($scope, $rootScope, $http, crmService
 				}else{
 					$mdToast.show($mdToast.simple().textContent('Incorrect login credentials').position('bottom right'));
 				}
+				$('#loginBtn').removeAttr('disabled');
 			});
 		}else {
 			$http.post(crmService.apiUrl + '/auth/customer/signin', $scope.loginCreds)
@@ -92,6 +94,7 @@ app.controller('loginController', function($scope, $rootScope, $http, crmService
 				}else{
 					$mdToast.show($mdToast.simple().textContent('Incorrect login credentials').position('bottom right'));	
 				}
+				$('#loginBtn').removeAttr('disabled');
 			});
 		}
 	};
@@ -109,6 +112,7 @@ app.controller('signupController', function($scope, $rootScope, $http, crmServic
 			$mdToast.show($mdToast.simple().textContent('Invalid login credentials').position('bottom right'));
 			return;
 		}
+		$('#signupBtn').attr({'disabled': 'disabled'});
 		if($scope.signupCreds.as === 'a') {
 			$http.post(crmService.apiUrl + '/auth/admin/signup', $scope.signupCreds)
 			.success(function(response) {
@@ -118,6 +122,7 @@ app.controller('signupController', function($scope, $rootScope, $http, crmServic
 					$mdToast.show($mdToast.simple().textContent('Successfully Signed up').position('bottom right'));
 					document.location.href = '/';
 				}
+				$('#signupBtn').removeAttr('disabled');
 			});
 		}else {
 			$http.post(crmService.apiUrl + '/auth/customer/signup', $scope.signupCreds)
@@ -128,6 +133,7 @@ app.controller('signupController', function($scope, $rootScope, $http, crmServic
 					$mdToast.show($mdToast.simple().textContent('Successfully Signed up').position('bottom right'));
 					document.location.href = '/';
 				}
+				$('#signupBtn').removeAttr('disabled');
 			});
 		}
 	};
