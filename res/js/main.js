@@ -226,6 +226,7 @@ app.controller('customerContractsController', function($scope, $rootScope, $http
 	.success(function(response) {
 		crmService.checkResponse(response);
 		$scope.contracts = response.data;
+		$scope.contracts = $scope.contracts.reverse();
 		$scope.contracts.forEach(function(contract) {
 			if(contract.status == 0) {
 				$scope.data.unassigned++;
@@ -546,6 +547,7 @@ app.controller('adminContractsController', function($scope, $rootScope, $http, c
 	.success(function(response) {
 				crmService.checkResponse(response);
 		$scope.contracts = response.data;
+		$scope.contracts = $scope.contracts.reverse();
 		$scope.contracts.forEach(function(contract) {
 			if(contract.status == 0) {
 				$scope.data.unassigned++;
@@ -715,6 +717,7 @@ app.controller('adminCustomerController', function($scope, $rootScope, $http, cr
 	.success(function(response) {
 				crmService.checkResponse(response);
 		$scope.customer = response.data;
+		$scope.customer.contracts = $scope.customer.contracts.reverse();
 		$scope.customer.contracts.forEach(function(contract) {
 			if(contract.status == 0) {
 				$scope.data.unassigned++;
