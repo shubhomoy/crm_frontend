@@ -560,10 +560,10 @@ app.controller('adminContractsController', function($scope, $rootScope, $http, c
 			}
 			$scope.data.total++;
 		});
-		$scope.chart.data.push(Math.ceil(($scope.data.unassigned/$scope.data.total)*100));
-		$scope.chart.data.push(Math.ceil(($scope.data.assigned/$scope.data.total)*100));
-		$scope.chart.data.push(Math.ceil(($scope.data.inprogress/$scope.data.total)*100));
-		$scope.chart.data.push(Math.ceil(($scope.data.completed/$scope.data.total)*100));
+		$scope.chart.data.push((($scope.data.unassigned/$scope.data.total)*100));
+		$scope.chart.data.push((($scope.data.assigned/$scope.data.total)*100));
+		$scope.chart.data.push((($scope.data.inprogress/$scope.data.total)*100));
+		$scope.chart.data.push((($scope.data.completed/$scope.data.total)*100));
 			});
 });	
 
