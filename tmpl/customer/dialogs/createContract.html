@@ -1,0 +1,36 @@
+<md-dialog flex="60">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Create a new contract</h2>
+		</div>
+	</md-toolbar>
+	<form name="create_contract" ng-submit="create()">
+	<md-dialog-content>
+		<div class="md-dialog-content" layout="column">
+			<md-input-container>
+				<label>
+					Title
+				</label>
+				<input ng-model="contract.title" required md-no-asterisk name="title">
+				<div ng-messages="create_contract.title.$error">
+					<div ng-message="required">This is required.</div>
+				</div>
+			</md-input-container>
+			<md-input-container>
+				<label>
+					Description
+				</label>
+				<input ng-model="contract.description" required md-no-asterisk name="description">
+				<div ng-messages="create_contract.description.$error">
+					<div ng-message="required">This is required.</div>
+				</div>
+			</md-input-container>
+			<md-dialog-actions>
+				<md-button ng-click="closeDialog()">Cancel</md-button>
+				<md-button type="submit">Create</md-button>
+			</md-dialog-actions>
+			
+		</div>
+	</md-dialog-content>
+	</form>
+</md-dialog>

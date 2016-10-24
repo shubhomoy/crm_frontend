@@ -1,0 +1,97 @@
+<md-card flex="70" flex-offset="15">
+	<md-card-header>
+		<md-card-avatar>
+			<img src="/res/images/dashboard.svg">
+		</md-card-avatar>
+		<md-card-header-text>
+			<span class="md-title">Dashboard</span>
+			<span class="md-subhead">View, analyse and manage contracts and customers</span>
+		</md-card-header-text>
+	</md-card-header>
+	<md-divider></md-divider>
+	<md-card-content layout="column">
+		<p><span class="md-title">Contracts ({{contracts.length}})</span></p>
+		<div class="chart-container">
+			<canvas height="100" class="chart chart-bar" chart-data="contractsChart.data" chart-labels="contractsChart.labels" chart-options="options"></canvas>
+			<p class="md-caption" layout layout-align="end center">
+				Graph data shown in percentage
+			</p>
+		</div>
+		<p layout layout-align="end center">
+			<md-button href="/a/contracts" class="md-primary md-raised">View contracts</md-button>
+		</p>
+	</md-card-content>
+</md-card>
+<md-card flex="70" flex-offset="15">
+	<md-card-header>
+		<md-card-avatar>
+			<img src="/res/images/user.svg">
+		</md-card-avatar>
+		<md-card-header-text>
+			<div layout>
+				<div layout="column">
+					<span class="md-title">All Customers</span>
+					<span class="md-subhead">View, manage customers</span>		
+				</div>
+				<span flex></span>
+			</div>
+		</md-card-header-text>
+	</md-card-header>
+	<md-divider></md-divider>
+	<md-card-content>
+		<md-list ng-if="customers.length > 0">
+			<md-list-item ng-repeat="customer in customers" class="md-3-line" layout="row" layout-align="begin center" href="/a/customer/view/{{customer.id}}">
+				<img src="/res/images/avatar.svg" class="md-avatar">
+				<div class="md-list-item-text">
+					<h3>{{customer.name}}</h3>
+					<p>{{customer.contracts.length}} contracts</p>
+					<p>
+						<span ng-class="{'red': customer.email_queries.length > 0}">{{customer.email_queries.length}} queries</span>
+					</p>
+				</div>
+			</md-list-item>
+		</md-list>
+		<p layout layout-align="center center" class="md-body-2" ng-if="customers.length == 0">
+			There are no customers
+		</p>
+	</md-card-content>
+</md-card>
+
+<md-card flex="70" flex-offset="15">
+	<md-card-header>
+		<md-card-avatar>
+			<img src="/res/images/email.svg">
+		</md-card-avatar>
+		<md-card-header-text>
+			<div layout>
+				<div layout="column">
+					<span class="md-title">Mail Lists</span>
+					<span class="md-subhead">View, manage and send mails</span>		
+				</div>
+				<span flex></span>
+				<md-button class="md-raised md-primary" ng-click="newMailList($event)" ng-if="customers.length>0">Create Mail list</md-button>
+			</div>
+		</md-card-header-text>
+	</md-card-header>
+	<md-divider></md-divider>
+	<md-card-content>
+		<md-list ng-if="maillists.length > 0">
+			<md-list-item ng-repeat="maillist in maillists" class="md-2-line" layout="row" layout-align="begin center" href="/a/maillist/view/{{maillist.id}}">
+				<img src="/res/images/envelope.svg" class="md-avatar">
+				<div class="md-list-item-text" layout>
+					<div layout="column">
+						<h3>{{maillist.name}}</h3>
+						<p>{{maillist.customers.length}} customers</p>
+					</div>
+					<span flex></span>
+					<md-button class="md-icon-button md-primary">
+					  	<md-icon md-svg-icon="/res/images/rubbish-bin.svg" ng-click="deleteMaillist($event, maillist)"></md-icon>
+					</md-button>
+				</div>
+			</md-list-item>
+		</md-list>
+		<p layout-align="center center" layout class="md-body-2" ng-if="maillists.length == 0">
+			There are no mail list
+		</p>
+	</md-card-content>
+</md-card>

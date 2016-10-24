@@ -1,0 +1,41 @@
+<md-dialog flex="60">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Create a new mail list</h2>
+		</div>
+	</md-toolbar>
+	<form name="maillist_form" ng-submit="createMailList()">
+	<md-dialog-content flex layout>
+		<div class="md-dialog-content" layout="column">
+			<md-input-container class="md-block">
+				<label>
+					Mail list name
+				</label>
+				<input type="text" ng-model="data.name" name="name" required md-no-asterisk>
+				<div ng-messages="maillist_form.name.$error">
+					<div ng-message="required">This is required.</div>
+				</div>
+			</md-input-container>
+				
+			<p>Select the customers in this mail list</p>
+			
+			<md-checkbox aria-label="Select All" ng-checked="isChecked()" md-indeterminate="isIndeterminate()" ng-click="toggleAll()">
+				<span ng-if="isChecked()">Un-</span>Select All
+			</md-checkbox>
+			<div ng-repeat="customer in customers" flex="90" flex-offset="10">
+				<md-checkbox ng-checked="exists(customer)" ng-click="toggle(customer)">
+			    	{{ customer.name }}
+			    </md-checkbox>
+			</div>
+		</div>
+	</md-dialog-content>
+	<md-dialog-actions layout>
+	    <md-button ng-click="closeDialog()">
+	        Cancel
+	    </md-button>
+	    <md-button type="submit">
+	        Create
+	    </md-button>
+	</md-dialog-actions>
+	</form>
+</md-dialog>

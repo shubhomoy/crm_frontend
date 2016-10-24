@@ -1,0 +1,60 @@
+<md-card flex layout>
+	<md-card-actions layout layout-align="begin center">
+		<md-button href="/c/dashboard">Dashboard</md-button> > Contracts
+	</md-card-actions>
+</md-card>
+<md-content flex="70" flex-offset="15" layout-padding>
+	<md-card>
+		<md-card-header>
+			<md-card-avatar>
+				<img src="/res/images/contract.svg">
+			</md-card-avatar>
+			<md-card-header-text>
+				<span class="md-title">All Contracts</span>
+				<span class="md-subhead">View your contract</span>
+			</md-card-header-text>
+		</md-card-header>
+		<md-card-content layout layout-align="begin center">
+			<div class="chart-unassigned" style="width:10px;margin-right:10px;"></div><span class="md-caption">Unassigned ({{data.unassigned}})</span>
+			<div class="chart-assigned" style="width:10px;margin-right:10px;margin-left:20px;"></div><span class="md-caption">Assigned ({{data.assigned}})</span>
+			<div class="chart-inprogress" style="width:10px;margin-right:10px;margin-left:20px;"></div><span class="md-caption">In progress ({{data.inprogress}})</span>
+			<div class="chart-completed" style="width:10px;margin-right:10px;margin-left:20px;"></div><span class="md-caption">Completed ({{data.completed}})</span>
+		</md-card-content>
+		<md-card-content layout>
+			<div flex="{{chart.data[0]}}" class="chart-unassigned"></div>
+			<div flex="{{chart.data[1]}}" class="chart-assigned"></div>
+			<div flex="{{chart.data[2]}}" class="chart-inprogress"></div>
+			<div flex="{{chart.data[3]}}" class="chart-completed"></div>
+		</md-card-content>
+		<md-divider></md-divider>
+		<md-card-title>
+			<md-card-title-text flex layout="row">
+				<span class="md-title">{{contract.title}}</span>
+			</md-card-title-text>
+		</md-card-title>
+		<md-card-content>
+			<md-list ng-if="contracts.length > 0">
+				<md-list-item ng-repeat="contract in contracts" class="md-2-line" layout="row" layout-align="begin center" href="/c/contract/view/{{contract.id}}">
+					<img src="/res/images/contract2.svg" class="md-avatar">
+					<div flex="70" layout="column" layout-align="begin begin" class="md-list-item-text">
+						<h3>{{contract.title}}</h3>
+					</div>
+					<div flex="30" layout="column" layout-align="end end" class="md-list-item-text">
+						<p><span ng-switch on="contract.status">Status - 
+							<span ng-switch-when="0" class="md-body-2 red">Not Assigned</span>
+							<span ng-switch-when="1" class="md-body-2">Assigned</span>
+							<span ng-switch-when="2" class="md-body-2 orange">In Progress</span>
+							<span ng-switch-when="3" class="md-body-2 green">Completed</span>
+						</span><br />
+						<span>Assigned to <span class="md-body-2">{{contract.admin != null ? contract.admin.name : 'No one'}}</span></span>	
+						</p>
+					</div>
+					<md-
+				</md-list-item>
+			</md-list>
+			<p layout-align="center center" layout class="md-body-2" ng-if="contracts.length == 0">
+				You have not created any contracts
+			</p>
+		</md-card-content>
+	</md-card>
+</md-content>

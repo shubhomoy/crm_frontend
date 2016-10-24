@@ -1,0 +1,60 @@
+<md-content flex="50" flex-offset="25">
+	<md-card>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Signup</h2>
+			</div>
+		</md-toolbar>
+		<md-card-content layout>
+			<div flex=50 layout-padding>
+				<p class="md-body-1">Signup with CRM Demo either by an Administrator or as a Customer.</p>
+				<p class="md-body-1">
+					For help and about this CRM, please visit the <a href="/help">help</a> section.
+				</p>
+				<p class="md-body-1">
+					If you are an existing user, then please Login.
+				</p>
+				
+				<span layout-align="center center" layout><a href="/" class="md-button md-primary">Login</a></span>
+			</div>
+			<div flex="50" layout-padding>
+				<form name="signup_form" ng-submit="signup()">
+				<md-input-container>
+					<label>Email</label>
+					<input ng-model="signupCreds.email" type="email" autocomplete required md-no-asterisk name="email"></input>
+					<div ng-messages="signup_form.email.$error">
+      					<div ng-message="required">This is required.</div>
+      				</div>
+				</md-input-container>
+				<md-input-container>
+					<label>Name</label>
+					<input ng-model="signupCreds.name" required md-no-asterisk name="name"></input>
+					<div ng-messages="signup_form.name.$error">
+      					<div ng-message="required">This is required.</div>
+      				</div>
+				</md-input-container>
+				<md-input-container>
+					<label>Password</label>
+					<input type="password" ng-model="signupCreds.password" required md-no-asterisk name="password"></input>
+					<div ng-messages="signup_form.password.$error">
+      					<div ng-message="required">This is required.</div>
+      				</div>
+				</md-input-container>
+				<p>
+					Signup as
+				</p>
+				<md-radio-group ng-model="signupCreds.as" layout>
+					<md-list-item>
+						<md-radio-button value="a">Admin</md-radio-button>
+					</md-list-item>
+					<md-list-item>
+						<md-radio-button value="c">Customer</md-radio-button>
+					</md-list-item>
+				</md-radio-group>
+
+				<md-button class="md-primary md-raised" type="submit">Sign up</md-button>
+				</form>
+			</div>
+		</md-card-content>
+	</md-card>
+</md-content>

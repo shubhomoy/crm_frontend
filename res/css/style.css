@@ -1,0 +1,34 @@
+.red {
+	color: red;
+}
+.green {
+	color: green;
+}
+.orange {
+	color: orange;
+}
+.blue {
+	color: blue;
+}
+
+.chart-unassigned {
+	height: 5px;
+	background: red;
+}
+.chart-assigned {
+	height: 5px;
+	background: blue;
+}
+.chart-inprogress {
+	height: 5px;
+	background: orange;
+}
+.chart-completed {
+	height: 5px;
+	background: green;
+}
+
+.chart-container {
+	padding-right: 15%;
+	padding-left: 15%;
+}

@@ -1,0 +1,22 @@
+<md-card flex="70" flex-offset="15">
+	<md-card-header>
+		<md-card-avatar>
+			<img src="/res/images/dashboard.svg">
+		</md-card-avatar>
+		<md-card-header-text>
+			<span class="md-title">Dashboard</span>
+			<span class="md-subhead">View, analyse and manage contracts</span>
+		</md-card-header-text>
+	</md-card-header>
+	<md-divider></md-divider>
+	<md-card-content layout="column">
+		<p><span class="md-title">Contracts ({{contracts.length}})</span></p>
+		<div class="chart-container">
+			<canvas height="100" class="chart chart-bar" chart-data="contractsChart.data" chart-labels="contractsChart.labels" chart-options="options"></canvas>
+		</div>
+		<p layout layout-align="end center">
+			<md-button href="/c/contracts" class="md-primary md-raised">View contracts</md-button>
+			<md-button ng-click="newContract($event)" class="md-primary md-raised">Create a new contract</md-button>
+		</p>
+	</md-card-content>
+</md-card>

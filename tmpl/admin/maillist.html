@@ -1,0 +1,73 @@
+<md-card flex layout>
+	<md-card-actions layout layout-align="begin center">
+		<md-button href="/a/dashboard">Dashboard</md-button> > View Mail list
+	</md-card-actions>
+</md-card>
+<md-content flex="70" flex-offset="15" layout-padding>
+	<md-card>
+		<md-card-header>
+			<md-card-avatar>
+				<img src="/res/images/email.svg">
+			</md-card-avatar>
+			<md-card-header-text>
+				<div layout>
+					<div layout="column">
+						<span class="md-title">{{maillist.name}}</span>
+						<span class="md-subhead">Add, remove, send mails to customers</span>		
+					</div>
+					<span flex></span>
+					<md-button class="md-raised" ng-click="showMailDialog()">Send Mail</md-button>
+				</div>
+				
+			</md-card-header-text>
+		</md-card-header>
+		<md-divider></md-divider>
+		<md-card-content>
+			<md-list>
+				<md-list-item ng-repeat="customer in maillist.customers" class="md-2-line" layout="row" layout-align="begin center" href="/a/customer/view/{{customer.id}}">
+					<img src="/res/images/avatar.svg" class="md-avatar">
+					<div class="md-list-item-text">
+						<h3>{{customer.name}}</h3>
+					</div>
+				</md-list-item>
+			</md-list>
+		</md-card-content>
+	</md-card>
+</md-content>
+
+<div style="visibility: hidden">
+	<div class="md-dialog-container" id="email-dialog">
+		<md-dialog flex="70">
+			<md-toolbar>
+				<div class="md-toolbar-tools">
+					<h2>Send mail to mail list</h2>
+				</div>
+			</md-toolbar>
+			<form name="maillist_form" ng-submit="sendEmail()">
+			<md-dialog-content layout-padding>
+				<div class="md-dialog-content" layout="column">
+					<md-input-container>
+						<label>Subject</label>
+						<input type="text" flex="70" ng-model="email.subject" name="subject" required md-no-asterisk>
+						<div ng-messages="maillist_form.subject.$error">
+							<div ng-message="required">This is required.</div>
+						</div>
+					</md-input-container>
+					<md-input-container>
+						<label>Message</label>
+						<textarea ng-model="email.body" rows="4" name="body" required md-no-asterisk></textarea>
+						<div ng-messages="maillist_form.body.$error">
+							<div ng-message="required">This is required.</div>
+						</div>
+					</md-input-container>
+				</div>
+			</md-dialog-content>
+			<md-dialog-actions>
+				<md-progress-linear md-mode="indeterminate" id="progress"></md-progress-linear>
+				<md-button ng-click="closeDialog()">Cancel</md-button>
+				<md-button class="md-primary" id="submit" type="submit">Send</md-button>
+			</md-dialog-actions>
+			</form>
+		</md-dialog>
+	</div>
+</div>

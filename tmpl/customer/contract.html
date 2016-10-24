@@ -1,0 +1,94 @@
+<md-card flex layout>
+	<md-card-actions layout layout-align="begin center">
+		<md-button href="/c/dashboard">Dashboard</md-button> > <md-button href="/c/contracts">Contracts</md-button> > View Contract
+	</md-card-actions>
+</md-card>
+<md-content flex="70" flex-offset="15" layout-padding>
+	<md-card>
+		<md-card-header>
+			<md-card-avatar>
+				<img src="/res/images/contract.svg">
+			</md-card-avatar>
+			<md-card-header-text>
+				<span class="md-title">Contract Details</span>
+				<span class="md-subhead">View contract details</span>
+			</md-card-header-text>
+		</md-card-header>
+		<md-divider></md-divider>
+		<md-card-title>
+			<md-card-title-text flex layout="row">
+				<span class="md-title" flex="70">{{contract.title}}</span>
+				<div flex="30" layout layout-align="end center">
+					<span class="md-caption">Created at<br />{{contract.created_at | date: 'dd MMM yyyy'}}</span>
+				</div>
+			</md-card-title-text>
+		</md-card-title>
+		<md-card-content>
+			<span class="md-subhead">Contract Description</span>
+			<p class="md-body-1">
+				{{contract.description}}
+			</p>
+		</md-card-content>
+		<md-card-header>
+			<md-card-header-text>
+				<span class="md-title">Other information</span>
+			</md-card-header-text>
+		</md-card-header>
+		<md-divider></md-divider>
+		<md-card-content>
+			<p class="md-body-1">
+				Status - <span class="md-body-2" ng-switch on="contract.status">
+					<span ng-switch-when="0">Pending</span>
+					<span ng-switch-when="1">Assigned</span>
+					<span ng-switch-when="2">In Progress</span>
+					<span ng-switch-when="3">Completed</span>
+				</span>
+			</p>
+			<p class="md-body-1">
+				No. of renews - <span class="md-body-2">{{contract.renews}}</span>
+			</p>
+			<p class="md-body-1">
+				Expires in - <span class="md-body-2">{{contract.expires_in == null ? 'NA' : contract.expires_in | date : 'dd MMM yyyy'}}</span>
+			</p>
+			<p class="md-body-1">
+				Assigned to - <span class="md-body-2">{{contract.admin == null ? 'No one' : contract.admin.name}}</span>
+			</p>
+		</md-card-content>
+		<md-card-content layout layout-align="end center">
+			<md-button class="md-raised md-primary" ng-click="askStatusDialog($event)" ng-if="contract.email_queries.length == 0">Ask status</md-button>
+		</md-card-content>
+	</md-card>
+</md-content>
+
+
+<div style="visibility: hidden">
+	<div class="md-dialog-container" id="ask-status-dialog">
+		<md-dialog flex="70">
+			<md-toolbar>
+				<div class="md-toolbar-tools">
+					<h2>Ask status about this contract</h2>
+				</div>
+			</md-toolbar>
+			<form name="status_form" ng-submit="askStatus()">
+			<md-dialog-content layout="column" layout-padding>
+				<div class="md-dialog-content" layout="column">
+					<md-input-container>
+						<label>Remarks</label>
+						<textarea ng-model="remarks" rows="4" flex name="remarks" required md-no-asterisk></textarea>
+						<div ng-messages="status_form.remarks.$error">
+          					<div ng-message="required">This is required.</div>
+          				</div>
+					</md-input-container>	
+				</div>
+				<p class="md-body-1" layout-padding layout layout-align="center center">
+					An administrator will contact you via email
+				</p>
+			</md-dialog-content>
+			<md-dialog-actions>
+				<md-button ng-click="closeDialog()">Cancel</md-button>
+				<md-button class="md-primary" type="submit">Ask status</md-button>
+			</md-dialog-actions>
+			</form>
+		</md-dialog>
+	</div>
+</div>
